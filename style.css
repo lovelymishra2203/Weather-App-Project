@@ -3,11 +3,23 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: hsl(0, 0%, 95%);
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, hsl(210, 80%, 85%), hsl(40, 80%, 88%));
 }
+
+.appTitle{
+    margin: 30px 0 10px 0;
+    color: hsla(0, 0%, 20%, 0.85);
+}
+
 .weatherForm{
     margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 .cityInput{
     font-size: 1.5rem;
     padding: 10px;
@@ -17,6 +29,11 @@ body{
     margin: 10px;
     width: 300px;
 }
+
+.cityInput:focus{
+    outline: 2px solid hsl(120, 86%, 48%);
+}
+
 button[type="submit"]{
     font-size: 1.5rem;
     padding: 10px 20px;
@@ -26,10 +43,49 @@ button[type="submit"]{
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.2s ease;
 }
+
 button[type="submit"]:hover{
     background-color: hsl(120, 86%, 38%);
 }
+
+.locationBtn{
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 100%);
+    color: hsla(0, 0%, 20%, 0.85);
+    border: 2px solid hsla(0, 0%, 20%, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.locationBtn:hover{
+    background-color: hsl(0, 0%, 90%);
+}
+
+/* Loading spinner */
+.loader{
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+    border: 6px solid hsla(0, 0%, 0%, 0.1);
+    border-top: 6px solid hsl(120, 86%, 48%);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+/* Weather card */
 .card{
     background: linear-gradient(180deg, hsl(210, 100%, 75%), hsl(40, 100%, 75%));
     min-width: 300px;
@@ -39,36 +95,121 @@ button[type="submit"]:hover{
     padding: 50px;
     box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.5);
     border-radius: 10px;
+    animation: fadeIn 0.4s ease;
 }
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 h1{
     margin-top: 0;
     margin-bottom: 25px;
 }
+
 p{
     font-size: 1.5rem;
     margin: 5px 0;
 }
+
 .cityDisplay, .tempDisplay{
     font-size: 3.5rem;
     font-weight: bold;
     color: hsla(0, 0%, 0%, 0.75);
     margin-bottom: 25px;
 }
-.humidityDisplay{
+
+.dateDisplay{
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-bottom: 25px;
+    color: hsla(0, 0%, 0%, 0.6);
+    margin-top: -15px;
+    margin-bottom: 20px;
 }
+
+.humidityDisplay, .windDisplay, .feelsLikeDisplay{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .descDisplay{
     font-style: italic;
     font-size: 2rem;
     font-weight: bold;
 }
+
 .weatherEmoji{
     margin: 0;
     font-size: 3.5rem;
 }
+
 .errorDisplay{
     font-size: 2rem;
     font-weight: bold;
     color: hsla(0, 0%, 0%, 0.75);
+    text-align: center;
+}
+
+/* Recent searches */
+.recent{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recentTitle{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: hsla(0, 0%, 20%, 0.7);
+    margin-bottom: 10px;
+}
+
+.recentList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.recentChip{
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid hsla(0, 0%, 20%, 0.3);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.recentChip:hover{
+    background-color: hsl(120, 86%, 90%);
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 400px){
+    .cityInput{
+        width: 80%;
+    }
+
+    .card{
+        min-width: 80%;
+        padding: 30px;
+    }
+
+    .cityDisplay, .tempDisplay{
+        font-size: 2.5rem;
+    }
+
+    .descDisplay{
+        font-size: 1.5rem;
+    }
 }
