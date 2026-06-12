@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <h1 class="appTitle">🌤️ Weather App</h1>
+
     <form class="weatherForm">
         <input type="text" placeholder="Enter City" class="cityInput">
         <button type="submit">Get Weather</button>
+        <button type="button" class="locationBtn" title="Use my current location">📍</button>
     </form>
-    
+
+    <div class="loader" style="display: none;"></div>
+
     <div class="card" style="display: none;"></div>
-    
+
+    <div class="recent">
+        <p class="recentTitle" style="display: none;">Recent Searches:</p>
+        <div class="recentList"></div>
+    </div>
+
     <script src="index.js"></script>
 </body>
 </html>
